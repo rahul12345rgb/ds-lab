@@ -1,0 +1,84 @@
+// Write a program to sort given set of numbers in ascending/descending order using Merge sort
+5.	#include <stdio.h>
+6.	 
+7.	voidmergeSort(int[],int,int,int);
+8.	voidpartition(int[],int,int);
+9.	 
+10.	intmain()
+11.	{
+12.	intlist[50];
+13.	inti, size;
+14.	 
+15.	printf("Enter total number of elements:");
+16.	scanf("%d",&size);
+17.	printf("Enter the elements:\n");
+18.	for(i=0;i< size;i++)
+19.	{
+20.	scanf("%d",&list[i]);
+21.	}
+22.	partition(list,0, size -1);
+23.	printf("After merge sort:\n");
+24.	for(i=0;i < size;i++)
+25.	{
+26.	printf("%d   ",list[i]);
+27.	}
+28.	 
+29.	return0;
+30.	}
+31.	 
+32.	voidpartition(int list[],intlow,int high)
+33.	{
+34.	int mid;
+35.	 
+36.	if(low < high)
+37.	{
+38.	        mid =(low + high)/2;
+39.	partition(list, low, mid);
+40.	partition(list, mid +1, high);
+41.	mergeSort(list, low, mid, high);
+42.	}
+43.	}
+44.	 
+45.	voidmergeSort(int list[],intlow,intmid,int high)
+46.	{
+47.	inti, mi, k, lo,temp[50];
+48.	 
+49.	    lo = low;
+50.	i= low;
+51.	    mi = mid +1;
+52.	while((lo <= mid)&&(mi <= high))
+53.	{
+54.	if(list[lo]<= list[mi])
+55.	{
+56.	            temp[i]= list[lo];
+57.	            lo++;
+58.	}
+59.	else
+60.	{
+61.	            temp[i]= list[mi];
+62.	            mi++;
+63.	}
+64.	i++;
+65.	}
+66.	if(lo > mid)
+67.	{
+68.	for(k = mi; k <= high; k++)
+69.	{
+70.	            temp[i]= list[k];
+71.	i++;
+72.	}
+73.	}
+74.	else
+75.	{
+76.	for(k = lo; k <= mid; k++)
+77.	{
+78.	             temp[i]= list[k];
+79.	i++;
+80.	}
+81.	}
+82.	 
+83.	for(k = low; k <= high; k++)
+84.	{
+85.	        list[k]= temp[k];
+86.	}
+87.	}
