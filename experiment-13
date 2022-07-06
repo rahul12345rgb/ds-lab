@@ -1,0 +1,67 @@
+// Write a program to sort given set of numbers in ascending/descending order using insertion 
+sort and also search a number using binary search.
+#include<stdio.h>
+	int binarySearch(int a[], int beg, int end, int val)    
+	{    
+	    int mid;    
+	    if(end >= beg)     
+	    {        mid = (beg + end)/2;    
+	/* if the item to be searched is present at middle */  
+	        if(a[mid] == val)    
+	        {                 
+	            return mid+1;    
+	        }    
+	            /* if the item to be searched is smaller than middle, then it can only be in left subarray */  
+	        else if(a[mid] < val)     
+	        {  
+	            return binarySearch(a, mid+1, end, val);    
+	        }    
+	            /* if the item to be searched is greater than middle, then it can only be in right subarray */  
+	        else     
+	        {  
+	            return binarySearch(a, beg, mid-1, val);    
+	        }          
+	    }    
+	    return -1;     
+	}   
+
+intmain(){
+
+/* Here i& j for loop counters, temp for swapping,
+    * count for total number of elements, number[] to
+    * store the input numbers in array. You can increase
+    * or decrease the size of number array as per requirement
+    */
+inti, j, count, temp, number[25];
+	int val = 40; // value to be searched  
+printf("How many numbers u are going to enter?: ");
+scanf("%d",&count);
+
+printf("Enter %d elements: ", count);
+// This loop would store the input numbers in array
+for(i=0;i<count;i++)
+scanf("%d",&number[i]);
+
+// Implementation of insertion sort algorithm
+for(i=1;i<count;i++){
+      temp=number[i];
+      j=i-1;
+while((temp<number[j])&&(j>=0)){
+         number[j+1]=number[j];
+         j=j-1;
+      }
+      number[j+1]=temp;
+   }
+
+printf("Order of Sorted elements: ");
+for(i=0;i<count;i++)
+printf(" %d",number[i]);
+int res = binarySearch(a, 0, n-1, val); // Store result  
+	printf("\nElement to be searched is - %d", val);  
+	  if (res == -1)  
+	  printf("\nElement is not present in the array");  
+	  else  
+	  printf("\nElement is present at %d position of array", res);  
+
+return0;
+}
